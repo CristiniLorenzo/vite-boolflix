@@ -16,11 +16,12 @@ export default {
         };
     },
     methods: {
-        getMoviesFromApi() {
+        getMediaFromApi() {
         const queryParams = {
             // api_key: 'store.apiKey',
             api_key: store.apiKey,
-            query : store.searchText
+            query : store.searchText,
+            
         };
         
         axios.get('https://api.themoviedb.org/3/search/movie', {
@@ -31,13 +32,20 @@ export default {
             console.log(response);
             store.movies = response.data.results;
         }); 
+
+        axios.get('https://api.themoviedb.org/3/search/tv', {
+            params: queryParams
+        })
+        .then((response) => {
+            store.series = response.data.results;
+        });
         },
     },
 }
 </script>
 
 <template>
-<AppHeader @searchDone="getMoviesFromApi"></AppHeader>
+<AppHeader @searchDone="getMediaFromApi"></AppHeader>
 <main>
 
     <AppResults></AppResults>

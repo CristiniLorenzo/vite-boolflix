@@ -17,7 +17,14 @@ export default {
 
 <template>
     <section class="app-results">
-        <resultCard v-for="movie in store.movies" :key="movie.id" :cardInfo="movie"></resultCard>
+        <div>
+            <h2>FILMS</h2>
+            <resultCard v-for="movie in store.movies" :key="movie.id" :cardInfo="movie"></resultCard>
+        </div>
+        <div>
+            <h2>SERIE TV</h2>
+            <resultCard v-for="serie in store.series" :key="serie.id" :cardInfo="serie"></resultCard>
+        </div>
     </section>
 </template>
 
